@@ -1,9 +1,5 @@
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
+import { initializeApp } from "https:wwww.gstatic.com/firebasejs/9.8.2/firebase-app.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBST-SL-UvFhYs0VNithSmmXu3O8_TQsF4",
