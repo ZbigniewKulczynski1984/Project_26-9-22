@@ -2,8 +2,4 @@
 // import {app} from './firebaseConfig.js';
 // console.log(app);
 
-import default function () {
-
-}
-
-function()
+import renderHomePage from "./components/HomePage/renderHomePage.js";
