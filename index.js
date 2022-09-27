@@ -3,3 +3,5 @@
 // console.log(app);
 
 import renderHomePage from "./components/HomePage/renderHomePage.js";
+
+renderHomePage()
