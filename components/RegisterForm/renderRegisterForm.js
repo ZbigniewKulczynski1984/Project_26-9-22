@@ -1,3 +1,6 @@
+import {auth} from "../../firebaseConfig.js"
+import {createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js" 
+
 export default function () {
 	const section = document.querySelector('.content');
 	section.innerHTML = '';
@@ -19,7 +22,7 @@ export default function () {
 	inputPass1.setAttribute ('id', 'first-input-password-register');
 
 	const inputPass2 = document.createElement('input');
-	inputPass2.setAttribute ('type', 'repeat password');
+	inputPass2.setAttribute ('type', 'password');
 	inputPass2.setAttribute ('placeholder', 'password');
 	inputPass2.setAttribute ('id', 'second-input-password-register');
 
@@ -44,7 +47,14 @@ export default function () {
 
         console.log(email, password, password2);
 
-    
+        if(password === password2) {
+        
+    //właściwa rejstracja urzytkownika
+    createUserWithEmailAndPassword(auth, email, password)
+
+        } else {
+            console.log('Hasła muszą być takie same!!!');
+        }
 });
 
 }
