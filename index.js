@@ -4,8 +4,10 @@
 
 import renderHomePage from './components/HomePage/renderHomePage.js';
 import renderRegisterForm from './components/RegisterForm/renderRegisterForm.js';
-
 import renderLoginForm from './components/LoginForm/renderLoginForm.js';
+
+//selecting content container
+const contentContainer = document.querySelector('content')
 
 const homeButton = document.getElementById('home-anchor');
 const todosButton = document.getElementById('todos-anchor');
@@ -20,4 +22,4 @@ renderLoginForm();
 
 //rendering the home page on home button click
 homeButton.addEventListener('click', renderHomePage);
-loginButton.addEventListener('click', renderRegisterForm);
+loginButton.addEventListener('click', console.log(123));
