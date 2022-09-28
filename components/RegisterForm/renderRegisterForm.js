@@ -47,13 +47,19 @@ export default function () {
 
         console.log(email, password, password2);
 
-        if(password === password2) {
+        if(
+            password === password2 &&
+            password.length > 6 &&
+            password2.length > 6
+            ) 
+            {
         
     //właściwa rejstracja urzytkownika
     createUserWithEmailAndPassword(auth, email, password)
-
+            .then(userCredencials => console.log(userCredencials))
+            .catch((err) => console.log(err))
         } else {
-            console.log('Hasła muszą być takie same!!!');
+            console.log('Hasła muszą być takie same!!! lub są za krótkie');
         }
 });
 
