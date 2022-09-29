@@ -49,8 +49,8 @@ export default function () {
 
         if(
             password === password2 &&
-            password.length > 6 &&
-            password2.length > 6
+            password.length >= 6 &&
+            password2.length >= 6
             ) 
             {
         
