@@ -6,8 +6,11 @@ import renderHomePage from './components/HomePage/renderHomePage.js';
 // import renderRegisterForm from './components/RegisterForm/renderRegisterForm.js';
 // import renderLoginForm from './components/LoginForm/renderLoginForm.js';
 import renderLoginPage from './components/LoginPage/renderLoginPage.js';
-import {onAuthStateChanged, signOut,} from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js';
-import { auth } from "./firebaseConfig.js";
+import {
+	onAuthStateChanged,
+	signOut,
+} from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js';
+import { auth } from './firebaseConfig.js';
 
 //selecting content container
 const contentContainer = document.querySelector('content');
@@ -26,7 +29,7 @@ onAuthStateChanged(auth, (user) => {
 	} else {
 		console.log(`No user is logged in, onAuthStateChanged`);
 		loginButton.textContent = 'Log in';
-        renderHomePage();
+		renderHomePage();
 	}
 });
 
@@ -35,4 +38,11 @@ renderHomePage();
 
 //rendering the home page on home button click
 homeButton.addEventListener('click', renderHomePage);
-loginButton.addEventListener('click', renderLoginPage);
+loginButton.addEventListener('click', () => {
+	const user = auth.currentUser;
+    if(user) {
+        signOut(auth);
+    } else {
+        renderLoginPage();
+    }
+});

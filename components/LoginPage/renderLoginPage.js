@@ -33,10 +33,10 @@ export default function () {
 		renderRegisterForm();
 	});
 
-	loginForm.addEventListener('submit', () => {
+	loginForm.addEventListener('submit', (event) => {
 		event.preventDefault();
-		const email = document.getElementById('#input-email-login').value;
-		const password = document.getElementById('#input-password-login').value;
+		const email = document.getElementById('input-email-login').value;
+		const password = document.getElementById('input-password-login').value;
 
 		signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials);
