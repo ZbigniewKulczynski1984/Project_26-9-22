@@ -2,6 +2,7 @@ export default function () {
 
 	const form = document.createElement('form');
 	form.setAttribute('id', 'todo-form');
+    
 
 	const input = document.createElement('input');
 	input.setAttribute('type', 'text');
@@ -82,6 +83,26 @@ export default function () {
 	form.appendChild(submitBtn);
 
     return form;
+
 }
 
-// renderTodoForm();
+
+//alternatywna opcja
+// const categories = ["work", "life", "sport", "education"];
+//   categories.forEach((category) => {
+//     const div = document.createElement("div");
+//     div.setAttribute("id", `div-${category}`);
+//     const radioInput = document.createElement("input");
+//     radioInput.setAttribute("type", "radio");
+//     radioInput.setAttribute("id", `radio-${category}`);
+//     radioInput.setAttribute("name", "category");
+//     radioInput.setAttribute("value", category);
+//     const label = document.createElement("label");
+//     label.setAttribute("for", `radio-${category}`);
+//     label.textContent = category.charAt(0).toUpperCase();
+//     div.appendChild(radioInput);
+//     div.appendChild(label);
+//     fieldset.appendChild(div);
+//   });
+
+
