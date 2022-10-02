@@ -12,6 +12,9 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js';
 import { auth } from './firebaseConfig.js';
 
+// import renderTodoForm from "./components/todoForm/renderTodoForm.js";
+
+
 //selecting content container
 const contentContainer = document.querySelector('content');
 
@@ -35,6 +38,11 @@ onAuthStateChanged(auth, (user) => {
 
 //rendering the home page  on initial page load
 renderHomePage();
+// contentContainer.appendChild(renderTodoForm());
+
+
+
+
 
 //rendering the home page on home button click
 homeButton.addEventListener('click', renderHomePage);
@@ -44,5 +52,8 @@ loginButton.addEventListener('click', () => {
         signOut(auth);
     } else {
         renderLoginPage();
+		
     }
 });
+
+
