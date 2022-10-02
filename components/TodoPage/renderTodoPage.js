@@ -10,6 +10,7 @@ import {
 
 export default function () {
 	const contentContainer = document.querySelector('.content');
+    contentContainer.innerHTML = ''
 
 	const todoRef = ref(database, 'todos/' + auth.currentUser.uid);
 	onValue(todoRef, (snapshot) => {
@@ -19,6 +20,7 @@ export default function () {
             contentContainer.innerHTML = ''
 
             const h2 = document.createElementate('h2')
+            h2.textContent = "Add, remove and edit your todos.";
             contentContainer.appendChild(h2)
 
             renderTodoForm()
