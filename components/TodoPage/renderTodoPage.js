@@ -34,52 +34,64 @@ export default function () {
 				const todoCategory = document.getElementsByName('category').value;
 
 				const categoryList = [...category];
-                const found = categoryList.find((input) => input.checked);
+				const found = categoryList.find((input) => input.checked);
 
-                const foundValue = found.value;
-                push(todoRef, { todoText, foundValue})
-                    .then(() => console.log('pushed the data'))
-                    .catch((err) => console.log('Failed to push'));
+				const foundValue = found.value;
+				push(todoRef, { todoText, foundValue })
+					.then(() => console.log('pushed the data'))
+					.catch((err) => console.log('Failed to push'));
 			});
 		} else {
-        const todos = Object.values(data);
+			const todos = Object.values(data);
 
-        const h2 = document.createElement('h2');
-        h2.textContent = "Add, remove and edit your todos.";
+			const h2 = document.createElement('h2');
+			h2.textContent = 'Add, remove and edit your todos.';
 
-        const listItems = todos.map((el, i) => {
+			const listItems = todos.map((el, i) => {
+				const li = document.createElement('li');
+				li.setAttribute('id', `li-${i}`);
 
-        const li = document.createElement("li");
-        li.setAttribute("id", `li-${i}`);
+				const div = document.createElement('div');
+				div.setAttribute('id', `div-${i}`);
 
-        const div = document.createElement("div");
-        div.setAttribute("id", `div-${i}`);
+				const span = document.createElement('span');
+				span.textContent = `${el.todoText} (${el.category})`;
 
-        const span = document.createElement("span");
-        span.textContent = `${el.todoText} (${el.category})`;
+				const editButton = document.createElement('button');
+				editButton.setAttribute('id', `edit-button-${i}`);
+				editButton.setAttribute('class', 'edit-button');
+				editButton.textContent = 'Edit';
 
-        const editButton = document.createElement("button");
-        editButton.setAttribute("id", `edit-button-${i}`);
-        editButton.setAttribute("class", "edit-button");
-        editButton.textContent = "Edit";
+				const removeButton = document.createElement('button');
+				removeButton.setAttribute('id', `remove-button-${i}`);
+				removeButton.setAttribute('class', 'remove-button');
+				removeButton.textContent = 'Remove';
 
-        const removeButton = document.createElement("button");
-        removeButton.setAttribute("id", `remove-button-${i}`);
-        removeButton.setAttribute("class", "remove-button");
-        removeButton.textContent = "Remove";
+				div.appendChild(span);
+				div.appendChild(editButton);
+				div.appendChild(removeButton);
 
-        div.appendChild(span);
-        div.appendChild(editButton);
-        div.appendChild(removeButton);
+				li.appendChild(div);
+				return li;
 
-        li.appendChild(div);
-        return li;
+				console.log(listItems);
+			});
 
-        console.log(listItems)
-        
-      });
-        
+			const ul = document.createElement('ul');
 
+			listItems.forEach((el) => ul.appendChild(el));
 
-    }
-    })}
+			contentContainer.innerHTML = '';
+
+			const todoForm = renderTodoForm();
+
+			contentContainer.appendChild(h2);
+
+			contentContainer.appendChild(todoForm);
+
+			contentContainer.appendChild(ul);
+
+			
+		}
+	});
+}
