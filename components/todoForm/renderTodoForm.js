@@ -1,8 +1,6 @@
 export default function () {
-
 	const form = document.createElement('form');
 	form.setAttribute('id', 'todo-form');
-    
 
 	const input = document.createElement('input');
 	input.setAttribute('type', 'text');
@@ -23,6 +21,8 @@ export default function () {
 	inputWork.setAttribute('id', 'radio-work');
 	inputWork.setAttribute('name', 'work');
 	inputWork.setAttribute('value', 'work');
+
+	console.log(inputWork);
 
 	const labelWork = document.createElement('label');
 	labelWork.setAttribute('for', 'radio-work');
@@ -73,18 +73,19 @@ export default function () {
 	fieldset.appendChild(divSport);
 	fieldset.appendChild(divEducation);
 
-	const submitBtn = document.createElement('button');
-	submitBtn.setAttribute('type', 'submit');
-	submitBtn.setAttribute('id', 'todo-form-submit-button');
-	submitBtn.textContent = 'Add todo';
+	const submitButton = document.createElement('button');
+	submitButton.setAttribute('type', 'submit');
+	submitButton.setAttribute('id', 'todo-form-submit-button');
+	submitButton.textContent = 'Add todo';
 
 	form.appendChild(input);
 	form.appendChild(fieldset);
-	form.appendChild(submitBtn);
+	form.appendChild(submitButton);
 
-    return form;
-
+	return form;
 }
+
+
 
 
 //alternatywna opcja
@@ -104,5 +105,3 @@ export default function () {
 //     div.appendChild(label);
 //     fieldset.appendChild(div);
 //   });
-
-
