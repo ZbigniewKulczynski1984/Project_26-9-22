@@ -23,16 +23,19 @@ export default function () {
             h2.textContent = "Add, remove and edit your todos.";
             contentContainer.appendChild(h2)
 
-            renderTodoForm()
-
-            contentContainer.appendChild(renderTodoForm);
-
+            const todoForm = renderTodoForm()
             
-            todoForm.addEventListener('click', () => {
-                const todoInput = document.getElementById('todoInput')
+            contentContainer.appendChild(renderTodoForm);
+            
+            todoForm.addEventListener('submit', (event) => {
+                event.preventDefault
+                
+            const todoInput = document.getElementById('todoInput').value;
+
+
             })
 
-            
+        
         }
 	});
 }
