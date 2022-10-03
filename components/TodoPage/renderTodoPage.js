@@ -91,7 +91,6 @@ export default function () {
 
 			contentContainer.appendChild(ul);
 
-			
-		}
+	}
 	});
 }
