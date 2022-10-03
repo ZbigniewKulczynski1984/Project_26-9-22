@@ -41,11 +41,13 @@ export default function () {
                     .then(() => console.log('pushed the data'))
                     .catch((err) => console.log('Failed to push'));
 			});
-		}
-        const todos = Object.values(data)
+		} else {
+        const todos = Object.values(data);
 
         const h2 = document.createElement('h2');
         h2.textContent = "Add, remove and edit your todos.";
+
+        const listItems = todos.map((el, i) => {
 
         const li = document.createElement("li");
         li.setAttribute("id", `li-${i}`);
@@ -74,12 +76,10 @@ export default function () {
         return li;
 
         console.log(listItems)
+        
       });
         
 
 
-	});
-}
-
-
-//const todos = object.values
+    }
+    })}
