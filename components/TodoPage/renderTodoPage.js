@@ -9,73 +9,90 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js';
 
 export default function () {
-	const contentContainer = document.querySelector('.content');
-
-	const todoRef = ref(database, 'todos/' + auth.currentUser.uid);
+	const contentContainer = document.querySelector(".content");
+  
+	const todoRef = ref(database, "todos/" + auth.currentUser.uid);
+	const todoFormHandler = (event) => {
+	  event.preventDefault();
+	  const todoText = document.getElementById("todo-input").value;
+	  const category = [...document.getElementsByName("category")].find(
+		(input) => input.checked
+	  ).value;
+	  push(todoRef, {
+		todoText,
+		category,
+	  })
+		.then(() => console.log("Pushed the data successfully"))
+		.catch(() => console.log("Failed to push the data"));
+	};
 	onValue(todoRef, (snapshot) => {
-		const data = snapshot.val();
+	  const data = snapshot.val();
+	})
+} 
+if (!data) {
+	
+	contentContainer.innerHTML = "";
 
-		if (!data) {
-			contentContainer.innerHTML = '';
+	
+	const h2 = renderH2();
+	
+	contentContainer.appendChild(h2);
 
-			const h2 = document.createElement('h2');
-			h2.textContent = 'Add, remove and edit your todos.';
-			contentContainer.appendChild(h2);
+	
+	const todoForm = renderTodoForm();
 
-			const todoForm = renderTodoForm();
 
-			contentContainer.appendChild(todoForm);
+	contentContainer.appendChild(todoForm);
 
-			todoForm.addEventListener('submit', (event) => {
-				event.preventDefault();
+	todoForm.addEventListener("submit", todoFormHandler);
+  } else {
+	console.log(data);
+	
+	const todos = Object.values(data);
 
-				const todoText = document.getElementById('todoInput').value;
+	
+	const h2 = renderH2();
 
-				const todoCategory = document.getElementsByName('category').value;
+	
+	const listItems = todos.map((el, i) => {
+	  
+	  const li = document.createElement("li");
+	  li.setAttribute("id", `li-${i}`);
 
-				const categoryList = [...category];
-				const found = categoryList.find((input) => input.checked);
+	 
+	  const div = document.createElement("div");
+	  div.setAttribute("id", `div-${i}`);
 
-				const foundValue = found.value;
-				push(todoRef, { todoText, foundValue })
-					.then(() => console.log('pushed the data'))
-					.catch((err) => console.log('Failed to push'));
-			});
-		} else {
-			const todos = Object.values(data);
+	 
+	  const span = document.createElement("span");
+	  span.textContent = `${el.todoText} (${el.category})`;
 
-			const h2 = document.createElement('h2');
-			h2.textContent = 'Add, remove and edit your todos.';
+	  
+	  const editButton = document.createElement("button");
+	  editButton.setAttribute("id", `edit-button-${i}`);
+	  editButton.setAttribute("class", "edit-button");
+	  
+	  editButton.textContent = "Edit";
 
-			const listItems = todos.map((el, i) => {
-				const li = document.createElement('li');
-				li.setAttribute('id', `li-${i}`);
+	 
+	  const removeButton = document.createElement("button");
+	  removeButton.setAttribute("id", `remove-button-${i}`);
+	  removeButton.setAttribute("class", "remove-button");
+	  removeButton.textContent = "Remove";
 
-				const div = document.createElement('div');
-				div.setAttribute('id', `div-${i}`);
+	  
+	  appendElements(div, [span, editButton, removeButton]);
 
-				const span = document.createElement('span');
-				span.textContent = `${el.todoText} (${el.category})`;
+	  
+	  li.appendChild(div);
 
-				const editButton = document.createElement('button');
-				editButton.setAttribute('id', `edit-button-${i}`);
-				editButton.setAttribute('class', 'edit-button');
-				editButton.textContent = 'Edit';
+	  
+	  return li;
+	});
 
-				const removeButton = document.createElement('button');
-				removeButton.setAttribute('id', `remove-button-${i}`);
-				removeButton.setAttribute('class', 'remove-button');
-				removeButton.textContent = 'Remove';
+	
+	console.log(listItems);
 
-				div.appendChild(span);
-				div.appendChild(editButton);
-				div.appendChild(removeButton);
-
-				li.appendChild(div);
-				return li;
-
-				// console.log(listItems);
-			});
 
 			//----------------------------------------
 
@@ -130,6 +147,5 @@ export default function () {
 			  });
 			});
 
-	}
-	});
-}
+	};
+
