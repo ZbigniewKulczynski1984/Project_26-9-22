@@ -86,6 +86,15 @@ export default function () {
 			appendElements(contentContainer, [h2, renderTodoForm(), ul]);
 
 			//----------------------------------------
+								
+			appendElements(contentContainer, [h2, renderTodoForm(), ul]);
+			
+			const todoForm = document.getElementById("todo-form");
+			
+			todoForm.addEventListener("submit", todoFormHandler);
+			
+
+			//------------------------------------------------
 
 			const editButtons = [...document.getElementsByClassName("edit-button")];
 
@@ -108,7 +117,7 @@ export default function () {
 					.slice(1, 5)
 					.find((input) => input.checked).value;
 				  console.log(category);
-				  
+
 				  const updates = {};
 				  updates[`todos/${auth.currentUser.uid}/${Object.keys(data)[i]}`] = {
 					category,
