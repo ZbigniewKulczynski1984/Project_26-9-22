@@ -87,7 +87,7 @@ const form = document.createElement("form");
   form.appendChild(fieldset);
   form.appendChild(submitButton);
 
-  // 16.
+  
   return form;
 }
 

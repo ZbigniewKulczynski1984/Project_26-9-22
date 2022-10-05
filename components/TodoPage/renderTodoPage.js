@@ -83,13 +83,41 @@ export default function () {
 
 			contentContainer.innerHTML = '';
 
-			const todoForm = renderTodoForm();
+			appendElements(contentContainer, [h2, renderTodoForm(), ul]);
 
-			contentContainer.appendChild(h2);
+			//----------------------------------------
 
-			contentContainer.appendChild(todoForm);
+			const editButtons = [...document.getElementsByClassName("edit-button")];
 
-			contentContainer.appendChild(ul);
+			editButtons.forEach((el, i) => {
+			  el.addEventListener("click", function () {
+				this.remove();
+
+				const div = document.getElementById(`div-${i}`);
+
+				const todoForm = renderTodoForm();
+
+				todoForm.setAttribute("id", `todo-form-${i}`);
+				div.appendChild(todoForm);
+				todoForm.addEventListener("submit", function (event) {
+				  event.preventDefault();
+				  const todoText = this.childNodes[0].value;
+				  console.log(todoText);
+
+				  const category = [...this.getElementsByTagName("input")]
+					.slice(1, 5)
+					.find((input) => input.checked).value;
+				  console.log(category);
+				  
+				  const updates = {};
+				  updates[`todos/${auth.currentUser.uid}/${Object.keys(data)[i]}`] = {
+					category,
+					todoText,
+				  };
+				  update(ref(database), updates);
+				});
+			  });
+			});
 
 	}
 	});
