@@ -74,8 +74,10 @@ export default function () {
 				li.appendChild(div);
 				return li;
 
-				console.log(listItems);
+				// console.log(listItems);
 			});
+
+			//----------------------------------------
 
 			const ul = document.createElement('ul');
 
