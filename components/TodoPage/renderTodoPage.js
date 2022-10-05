@@ -135,7 +135,8 @@ export default function () {
 			  removeButtons.forEach((el, i) => {
 				el.addEventListener('click', function () {
 					this.parentElement.parentElement.remove();
-					remove(ref,`todos/${auth.currentUser.uid}/${Object.keys(data)[i]}`)
+					remove(ref(database,`todos/${auth.currentUser.uid}/${Object.keys(data)[i]}`)
+					)
 				})
 			  })
 
