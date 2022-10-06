@@ -13,6 +13,7 @@ import {
 import { auth } from './firebaseConfig.js';
 import renderTodoPage from './components/TodoPage/renderTodoPage.js';
 import renderTeamPage from './components/TeamPage/renderTeamPage.js';
+import renderFilePage from './components/FilePage/renderFilePage.js';
 
 // import renderTodoForm from "./components/todoForm/renderTodoForm.js";
 
@@ -55,3 +56,5 @@ loginButton.addEventListener('click', () => {
 todosButton.addEventListener('click', renderTodoPage);
 
 publicButton.addEventListener('click', renderTeamPage);
+
+aboutButton.addEventListener('click', renderFilePage)
