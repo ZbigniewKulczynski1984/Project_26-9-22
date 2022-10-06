@@ -7,36 +7,67 @@ import {
 import { firestore } from "../../firebaseConfig.js";
 
 export default function () {
-	const contentContainer = document.querySelector('.content');
-	contentContainer.innerHTML = '';
+  
+  const contentContainer = document.querySelector(".content");
+  contentContainer.innerHTML = "";
+  
+  const h2 = document.createElement("h2");
+  h2.textContent = "Your team's todos";
+  contentContainer.appendChild(h2);
+  
+  const todoForm = renderTodoForm();
+  
+  contentContainer.appendChild(todoForm);
+  
+  todoForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    const todoText = document.getElementById("todo-input").value;
 
-	const h2 = document.createElement('h2');
-	h2.textContent = "Your team's todos.";
-	contentContainer.appendChild(h2);
+    
+    const category = [...document.getElementsByName("category")].find(
+      (input) => input.checked
+    ).value;
 
-	const todoForm = renderTodoForm();
+    // DODAWANIE DANYCH DO FIRESTORE
+    const addDocData = async function (todoText, category) {
+      try {
+        
+        const docInfo = await addDoc(collection(firestore, "teams"), {
+          todoText,
+          category,
+        });
+        console.log(docInfo);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    addDocData(todoText, category);
+  });
 
-	todoForm.setAttribute('id', 'teams-todo-form');
-	contentContainer.appendChild(todoForm);
+ 
+  const ul = document.createElement("ul");
+  ul.setAttribute("id", "teams-todo-list");
+  
+  const readDocData = async function () {
+    
+    const querySnapshot = await getDocs(collection(firestore, "teams"));
+    
 
-	todoForm.addEventListener('submit', function (event) {
-		event.preventDefault();
+    querySnapshot.forEach((el) => {
+      
+      const docData = el.data();
+      
+      const li = document.createElement("li");
+      li.textContent = `${docData.todoText} (${docData.category})`;
+      
+      ul.appendChild(li);
+      
+    });
+  };
 
-		const todoText = document.getElementById('todo-input').value;
-		//----------------------------------------
-		// Dodawanie danych
-
-		const addDocData = async function (todoText, category) {
-			try {
-                //wywołanie funkcji addDoc
-                const docInfo = await addDoc(collection(firestore, 'teams'), {
-                    todoText, category
-                })
-                console.log(docInfo)
-			} catch (err) {
-				console.error(err.message);
-			}
-		};
-        addDocData(todoText, category);
-	});
+  
+  readDocData();
+  
+  contentContainer.appendChild(ul);
 }
