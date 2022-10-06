@@ -12,6 +12,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js';
 import { auth } from './firebaseConfig.js';
 import renderTodoPage from './components/TodoPage/renderTodoPage.js';
+import renderTeamPage from './components/TeamPage/renderTeamPage.js';
 
 // import renderTodoForm from "./components/todoForm/renderTodoForm.js";
 
@@ -52,3 +53,5 @@ loginButton.addEventListener('click', () => {
 });
 
 todosButton.addEventListener('click', renderTodoPage);
+
+publicButton.addEventListener('click', renderTeamPage);
