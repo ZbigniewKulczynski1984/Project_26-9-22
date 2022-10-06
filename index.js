@@ -22,7 +22,7 @@ const contentContainer = document.querySelector('content');
 
 const homeButton = document.getElementById('home-anchor');
 const todosButton = document.getElementById('todos-anchor');
-const aboutButton = document.getElementById('about-anchor');
+const fileButton = document.getElementById('file-anchor');
 const publicButton = document.getElementById('public-anchor');
 const loginButton = document.getElementById('login-anchor');
 
@@ -57,4 +57,4 @@ todosButton.addEventListener('click', renderTodoPage);
 
 publicButton.addEventListener('click', renderTeamPage);
 
-aboutButton.addEventListener('click', renderFilePage)
+fileButton.addEventListener('click', renderFilePage)
