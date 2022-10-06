@@ -13,6 +13,7 @@ import {
 import { auth } from './firebaseConfig.js';
 import renderTodoPage from './components/TodoPage/renderTodoPage.js';
 import renderTeamPage from './components/TeamPage/renderTeamPage.js';
+import renderFilePage from './components/FilePage/renderFilePage.js';
 
 // import renderTodoForm from "./components/todoForm/renderTodoForm.js";
 
@@ -21,7 +22,7 @@ const contentContainer = document.querySelector('content');
 
 const homeButton = document.getElementById('home-anchor');
 const todosButton = document.getElementById('todos-anchor');
-const aboutButton = document.getElementById('about-anchor');
+const fileButton = document.getElementById('file-anchor');
 const publicButton = document.getElementById('public-anchor');
 const loginButton = document.getElementById('login-anchor');
 
@@ -55,3 +56,5 @@ loginButton.addEventListener('click', () => {
 todosButton.addEventListener('click', renderTodoPage);
 
 publicButton.addEventListener('click', renderTeamPage);
+
+fileButton.addEventListener('click', renderFilePage)
