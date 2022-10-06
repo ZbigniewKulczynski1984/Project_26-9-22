@@ -60,14 +60,10 @@ export default function () {
       
       const li = document.createElement("li");
       li.textContent = `${docData.todoText} (${docData.category})`;
-      
-      ul.appendChild(li);
-      
+    	ul.appendChild(li);
     });
   };
-
+readDocData();
   
-  readDocData();
-  
-  contentContainer.appendChild(ul);
+contentContainer.appendChild(ul);
 }
