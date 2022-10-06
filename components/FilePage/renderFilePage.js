@@ -1,4 +1,4 @@
-import {storage} from "../../firebaseConfig.js";
+import {storage, auth} from "../../firebaseConfig.js";
 import {
   uploadBytes,
   ref,
@@ -30,4 +30,13 @@ export default function() {
 
     contentContainer.appendChild(fileForm);
 
+    fileForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const file = fileInput.files[0];
+    
+        const storageRef = ref(storage, `/users/${auth.currentUser.uid}/avatar`);
+        uploadBytes(storageRef, file)
+          .then(() => console.log("Uploaded the file successfully"))
+          .catch(() => console.log("Failed to upload the file"));
+      });
 }
